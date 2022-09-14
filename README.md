@@ -1,2 +1,9 @@
-# solar2d-utils
-Some random utilities for Solar2d.
+# solar2d-lib
+
+Random utilties for Solar2d.
+
+# See Also
+
+[Alignmate](https://github.com/develephant/solar2d-alignmate-lib)
+
+[SQLightning](https://github.com/develephant/solar2d-sqlightning)
