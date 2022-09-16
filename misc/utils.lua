@@ -15,8 +15,8 @@ end
 --#############################################################################
 --# Pretty Print
 --#############################################################################
-function _M.pp( tbl, indent )
-  if not tbl and type( tbl ) ~= 'table' then
+function _M.pp( t, indent )
+  if not t and type( t ) ~= 'table' then
     return nil, "Please provide a valid table"
   end
 
@@ -33,7 +33,7 @@ function _M.pp( tbl, indent )
               print(indent..tostring(n)..": <-")
           else
               print(indent..tostring(n)..":")
-              pp(v,indent.."   ")
+              _M.pp(v,indent.."   ")
           end
       else
           if type(v) == "function" then
