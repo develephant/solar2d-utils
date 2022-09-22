@@ -22,6 +22,7 @@ _M.sep = _M.getPathSeparator
 function _M.new( options )
   options = options or {}
   options.defaultDir = options.default_dir or system.DocumentsDirectory
+  options.sep  = _M.getPathSeparator
   return setmetatable( options, mt)
 end
 
@@ -135,6 +136,15 @@ function _M.isDirEmpty(self, dirpath)
   return false
 end
 
+-- Solar2d specific
+function _M.getRootDirectory(self)
+  local root = system.pathForFile("build.settings")
+  local parts = self:split(root, self:sep())
+  local _ = table.remove(parts)
+  local root_path = table.concat(parts, "\\")
+  return root_path
+end
+
 --##############################################################################
 -- Files
 --##############################################################################
@@ -216,45 +226,45 @@ end
 --##############################################################################
 -- Device
 --##############################################################################
-function _M.getEnvironment()
+function _M.getEnvironment(self)
   return system.getInfo("environment")
 end
 
-function _M.isSim()
-  if _M.getEnvironment() == "simulator" then
+function _M.isSim(self)
+  if self:getEnvironment() == "simulator" then
     return true
   end
 
   return false
 end
 
-function _M.getPlatform()
+function _M.getPlatform(self)
   local platform = system.getInfo("platform")
-  if platform == _M.WIN32 then
-    return _M.WIN32
-  elseif platform  == _M.MACOS then
-    return _M.MACOS
+  if platform == self.WIN32 then
+    return self.WIN32
+  elseif platform  == self.MACOS then
+    return self.MACOS
   else
     return false
   end
 end
 
-function _M.isMACOS()
-  if _M.getPlatform() == _M.MACOS then
+function _M.isMACOS(self)
+  if self:getPlatform() == self.MACOS then
     return true
   end
 end
 
-function _M.isWIN32()
-  if _M.getPlatform() == _M.WIN32 then
+function _M.isWIN32(self)
+  if self:getPlatform() == self.WIN32 then
     return true
   end
 end
 
-function _M.getPathSeparator()
-  if _M.isMACOS() then
+function _M.getPathSeparator(self)
+  if self:isMACOS() then
     return [[/]]
-  elseif _M.isWIN32() then
+  elseif self:isWIN32() then
     return [[\]]
   else
     return [[/]]

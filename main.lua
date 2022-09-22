@@ -25,3 +25,4 @@
 -- Alignmate.bottom(submitButton, { padBottom = 20 })
 
 local fs = require("filesystem.fs").new()
+print(fs:getRootDirectory())

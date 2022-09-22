@@ -28,6 +28,7 @@ Filesystem helper.
 - `isMacOS`
 - `isWin32`
 - `getPathSeparator`
+- `getRootDirectory`
 
 
 ## Options
