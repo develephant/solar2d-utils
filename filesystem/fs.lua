@@ -13,6 +13,9 @@ _M.DOCUMENTS_DIR = system.DocumentsDirectory
 _M.RESOURCES_DIR = system.ResourceDirectory
 _M.TEMP_DIR = system.TemporaryDirectory
 
+_M.MACOS = "macos"
+_M.WIN32 = "win32"
+
 --alias
 _M.sep = _M.getPathSeparator
 
