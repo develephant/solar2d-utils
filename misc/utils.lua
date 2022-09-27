@@ -12,6 +12,17 @@ function _M.bind(fn, self, ...)
   end
 end
 
+--##############################################################################
+-- Hex
+--##############################################################################
+function _M.hexdecode(hex)
+  return (hex:gsub("%x%x", function(digits) return string.char(tonumber(digits, 16)) end))
+end
+
+function _M.hexencode(str)
+  return (str:gsub(".", function(char) return string.format("%2x", char:byte()) end))
+end
+
 --#############################################################################
 --# Pretty Print
 --#############################################################################
